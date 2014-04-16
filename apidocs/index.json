@@ -1,0 +1,274 @@
+{
+  "apiVersion": "v1",
+  "swaggerVersion": "1.2",
+  "basePath": "/v1/api",
+  "resourcePath": "/index",
+  "produces": [],
+  "consumes": [],
+  "protocols": [],
+  "authorizations": [],
+  "apis": [
+    {
+      "path": "/index/response",
+      "description": "",
+      "operations": [
+        {
+          "method": "POST",
+          "responseClass": "GatewayResult",
+          "nickname": "apiResultHandoff",
+          "position": 0,
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "authorizations": [],
+          "parameters": [
+            {
+              "name": "document",
+              "required": true,
+              "allowMultiple": false,
+              "dataType": "ResponseDocument",
+              "paramType": "body"
+            }
+          ],
+          "responseMessages": []
+        }
+      ]
+    },
+    {
+      "path": "/index/request",
+      "description": "",
+      "operations": [
+        {
+          "method": "POST",
+          "responseClass": "GatewayResult",
+          "nickname": "apiCallHandoff",
+          "position": 0,
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "authorizations": [],
+          "parameters": [
+            {
+              "name": "document",
+              "required": true,
+              "allowMultiple": false,
+              "dataType": "RequestDocument",
+              "paramType": "body"
+            }
+          ],
+          "responseMessages": []
+        }
+      ]
+    }
+  ],
+  "models": {
+    "GatewayResult": {
+      "id": "GatewayResult",
+      "name": "GatewayResult",
+      "qualifiedType": "com.wavemaker.gateway.commons.GatewayResult",
+      "properties": {
+        "statusMessage": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "statusCode": {
+          "type": "GatewayStatusCodes",
+          "qualifiedType": "com.wavemaker.gateway.commons.GatewayStatusCodes",
+          "position": 0,
+          "required": false,
+          "allowableValues": {
+            "values": {},
+            "valueType": "LIST"
+          }
+        },
+        "accessGranted": {
+          "type": "boolean",
+          "qualifiedType": "boolean",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        }
+      },
+      "subTypes": []
+    },
+    "RequestDocument": {
+      "id": "RequestDocument",
+      "name": "RequestDocument",
+      "qualifiedType": "com.wavemaker.gateway.core.api.RequestDocument",
+      "properties": {
+        "timestamp": {
+          "type": "Date",
+          "qualifiedType": "java.util.Date",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "id": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "headers": {
+          "type": "Map[string,string]",
+          "qualifiedType": "Map[java.lang.String,java.lang.String]",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "date": {
+          "type": "long",
+          "qualifiedType": "long",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "type": {
+          "type": "DocumentType",
+          "qualifiedType": "com.wavemaker.gateway.core.api.DocumentType",
+          "position": 0,
+          "required": false,
+          "allowableValues": {
+            "values": {},
+            "valueType": "LIST"
+          }
+        },
+        "signature": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "apiRequestDate": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "apiKey": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "params": {
+          "type": "Map[string,java.lang.String[]]",
+          "qualifiedType": "Map[java.lang.String,java.lang.String[]]",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "clientIP": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "method": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "url": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "host": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        }
+      },
+      "subTypes": []
+    },
+    "ResponseDocument": {
+      "id": "ResponseDocument",
+      "name": "ResponseDocument",
+      "qualifiedType": "com.wavemaker.gateway.core.api.ResponseDocument",
+      "properties": {
+        "timestamp": {
+          "type": "Date",
+          "qualifiedType": "java.util.Date",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "id": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "headers": {
+          "type": "Map[string,string]",
+          "qualifiedType": "Map[java.lang.String,java.lang.String]",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "date": {
+          "type": "long",
+          "qualifiedType": "long",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "type": {
+          "type": "DocumentType",
+          "qualifiedType": "com.wavemaker.gateway.core.api.DocumentType",
+          "position": 0,
+          "required": false,
+          "allowableValues": {
+            "values": {},
+            "valueType": "LIST"
+          }
+        },
+        "url": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "server": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "status": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        }
+      },
+      "subTypes": []
+    }
+  },
+  "position": 0
+}

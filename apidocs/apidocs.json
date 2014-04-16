@@ -1,0 +1,340 @@
+{
+  "apiVersion": "v1",
+  "swaggerVersion": "1.2",
+  "basePath": "/v1/api",
+  "resourcePath": "/apidocs",
+  "produces": [],
+  "consumes": [],
+  "protocols": [],
+  "authorizations": [],
+  "apis": [
+    {
+      "path": "/apidocs",
+      "description": "",
+      "operations": [
+        {
+          "method": "GET",
+          "responseClass": "SwaggerJsonServiceDocument",
+          "nickname": "getSwaggerJsonServiceDocument",
+          "position": 0,
+          "produces": [],
+          "consumes": [],
+          "authorizations": [],
+          "parameters": [],
+          "responseMessages": []
+        }
+      ]
+    },
+    {
+      "path": "/apidocs/{apiName}",
+      "description": "",
+      "operations": [
+        {
+          "method": "GET",
+          "responseClass": "SwaggerJsonDocument",
+          "nickname": "getSwaggerJsonDocument",
+          "position": 0,
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [],
+          "authorizations": [],
+          "parameters": [
+            {
+              "name": "apiName",
+              "required": true,
+              "allowMultiple": false,
+              "dataType": "string",
+              "paramType": "path"
+            }
+          ],
+          "responseMessages": []
+        }
+      ]
+    }
+  ],
+  "models": {
+    "SwaggerJsonDocApiElement": {
+      "id": "SwaggerJsonDocApiElement",
+      "name": "SwaggerJsonDocApiElement",
+      "qualifiedType": "com.wavemaker.gateway.core.swagger.SwaggerJsonDocApiElement",
+      "properties": {
+        "operations": {
+          "type": "List",
+          "qualifiedType": "List",
+          "position": 0,
+          "required": false,
+          "allowableValues": {},
+          "items": {
+            "ref": "SwaggerJsonDocApiOperation",
+            "qualifiedType": "com.wavemaker.gateway.core.swagger.SwaggerJsonDocApiOperation"
+          }
+        },
+        "description": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "path": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        }
+      },
+      "subTypes": []
+    },
+    "SwaggerJsonDocumentRef": {
+      "id": "SwaggerJsonDocumentRef",
+      "name": "SwaggerJsonDocumentRef",
+      "qualifiedType": "com.wavemaker.gateway.core.swagger.ui.SwaggerJsonDocumentRef",
+      "properties": {
+        "description": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "path": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        }
+      },
+      "subTypes": []
+    },
+    "AllowableValue": {
+      "id": "AllowableValue",
+      "name": "AllowableValue",
+      "qualifiedType": "com.wavemaker.gateway.core.swagger.SwaggerJsonDocApiParameter$AllowableValue",
+      "properties": {
+        "valueType": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "values": {
+          "type": "Set",
+          "qualifiedType": "Set",
+          "position": 0,
+          "required": false,
+          "allowableValues": {},
+          "items": {
+            "type": "string",
+            "qualifiedType": "java.lang.String"
+          }
+        }
+      },
+      "subTypes": []
+    },
+    "SwaggerJsonServiceDocument": {
+      "id": "SwaggerJsonServiceDocument",
+      "name": "SwaggerJsonServiceDocument",
+      "qualifiedType": "com.wavemaker.gateway.core.swagger.ui.SwaggerJsonServiceDocument",
+      "properties": {
+        "apis": {
+          "type": "List",
+          "qualifiedType": "List",
+          "position": 0,
+          "required": false,
+          "allowableValues": {},
+          "items": {
+            "ref": "SwaggerJsonDocumentRef",
+            "qualifiedType": "com.wavemaker.gateway.core.swagger.ui.SwaggerJsonDocumentRef"
+          }
+        },
+        "basePath": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "apiVersion": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        }
+      },
+      "subTypes": []
+    },
+    "SwaggerJsonDocument": {
+      "id": "SwaggerJsonDocument",
+      "name": "SwaggerJsonDocument",
+      "qualifiedType": "com.wavemaker.gateway.core.swagger.SwaggerJsonDocument",
+      "properties": {
+        "timestamp": {
+          "type": "Date",
+          "qualifiedType": "java.util.Date",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "id": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "type": {
+          "type": "DocumentType",
+          "qualifiedType": "com.wavemaker.gateway.core.api.DocumentType",
+          "position": 0,
+          "required": false,
+          "allowableValues": {
+            "values": {},
+            "valueType": "LIST"
+          }
+        },
+        "models": {
+          "type": "Map[string,SwaggerJsonDocModel]",
+          "qualifiedType": "Map[java.lang.String,com.wavemaker.gateway.core.swagger.SwaggerJsonDocModel]",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "apis": {
+          "type": "List",
+          "qualifiedType": "List",
+          "position": 0,
+          "required": false,
+          "allowableValues": {},
+          "items": {
+            "ref": "SwaggerJsonDocApiElement",
+            "qualifiedType": "com.wavemaker.gateway.core.swagger.SwaggerJsonDocApiElement"
+          }
+        },
+        "resourcePath": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "basePath": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "swaggerVersion": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "apiVersion": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        }
+      },
+      "subTypes": []
+    },
+    "SwaggerJsonDocApiParameter": {
+      "id": "SwaggerJsonDocApiParameter",
+      "name": "SwaggerJsonDocApiParameter",
+      "qualifiedType": "com.wavemaker.gateway.core.swagger.SwaggerJsonDocApiParameter",
+      "properties": {
+        "allowableValues": {
+          "type": "AllowableValue",
+          "qualifiedType": "com.wavemaker.gateway.core.swagger.SwaggerJsonDocApiParameter$AllowableValue",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "required": {
+          "type": "boolean",
+          "qualifiedType": "boolean",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "dataType": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "name": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "paramType": {
+          "type": "SwaggerDocRequestParamType",
+          "qualifiedType": "com.wavemaker.gateway.core.swagger.SwaggerDocRequestParamType",
+          "position": 0,
+          "required": false,
+          "allowableValues": {
+            "values": {},
+            "valueType": "LIST"
+          }
+        }
+      },
+      "subTypes": []
+    },
+    "SwaggerJsonDocApiOperation": {
+      "id": "SwaggerJsonDocApiOperation",
+      "name": "SwaggerJsonDocApiOperation",
+      "qualifiedType": "com.wavemaker.gateway.core.swagger.SwaggerJsonDocApiOperation",
+      "properties": {
+        "parameters": {
+          "type": "List",
+          "qualifiedType": "List",
+          "position": 0,
+          "required": false,
+          "allowableValues": {},
+          "items": {
+            "ref": "SwaggerJsonDocApiParameter",
+            "qualifiedType": "com.wavemaker.gateway.core.swagger.SwaggerJsonDocApiParameter"
+          }
+        },
+        "responseClass": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "nickname": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "httpMethod": {
+          "type": "HttpMethods",
+          "qualifiedType": "com.wavemaker.gateway.core.http.HttpMethods",
+          "position": 0,
+          "required": false,
+          "allowableValues": {
+            "values": {},
+            "valueType": "LIST"
+          }
+        }
+      },
+      "subTypes": []
+    }
+  },
+  "position": 0
+}

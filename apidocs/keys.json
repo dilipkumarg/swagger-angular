@@ -1,0 +1,236 @@
+{
+  "apiVersion": "v1",
+  "swaggerVersion": "1.2",
+  "basePath": "/v1/api",
+  "resourcePath": "/keys",
+  "produces": [],
+  "consumes": [],
+  "protocols": [],
+  "authorizations": [],
+  "apis": [
+    {
+      "path": "/keys/verify",
+      "description": "",
+      "operations": [
+        {
+          "method": "POST",
+          "responseClass": "Boolean",
+          "nickname": "verify",
+          "position": 0,
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "authorizations": [],
+          "parameters": [
+            {
+              "name": "signaturePayload",
+              "required": true,
+              "allowMultiple": false,
+              "dataType": "SignaturePayload",
+              "paramType": "body"
+            }
+          ],
+          "responseMessages": []
+        }
+      ]
+    },
+    {
+      "path": "/keys/generate",
+      "description": "",
+      "operations": [
+        {
+          "method": "POST",
+          "responseClass": "KeyDetails",
+          "nickname": "generateApiKey",
+          "position": 0,
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "authorizations": [],
+          "parameters": [
+            {
+              "name": "keysInput",
+              "required": true,
+              "allowMultiple": false,
+              "dataType": "KeysInput",
+              "paramType": "body"
+            }
+          ],
+          "responseMessages": []
+        }
+      ]
+    },
+    {
+      "path": "/keys/delete",
+      "description": "",
+      "operations": [
+        {
+          "method": "DELETE",
+          "responseClass": "Boolean",
+          "nickname": "deleteApiKey",
+          "position": 0,
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [],
+          "authorizations": [],
+          "parameters": [
+            {
+              "name": "key",
+              "required": true,
+              "allowMultiple": false,
+              "dataType": "string",
+              "paramType": "query"
+            }
+          ],
+          "responseMessages": []
+        }
+      ]
+    },
+    {
+      "path": "/keys/reissue",
+      "description": "",
+      "operations": [
+        {
+          "method": "GET",
+          "responseClass": "KeyDetails",
+          "nickname": "reissueKey",
+          "position": 0,
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [],
+          "authorizations": [],
+          "parameters": [
+            {
+              "name": "oldkey",
+              "required": true,
+              "allowMultiple": false,
+              "dataType": "string",
+              "paramType": "query"
+            }
+          ],
+          "responseMessages": []
+        }
+      ]
+    },
+    {
+      "path": "/keys/sign",
+      "description": "",
+      "operations": [
+        {
+          "method": "POST",
+          "responseClass": "SignaturePayload",
+          "nickname": "getDigitalSignature",
+          "position": 0,
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "authorizations": [],
+          "parameters": [
+            {
+              "name": "payload",
+              "required": true,
+              "allowMultiple": false,
+              "dataType": "SignaturePayload",
+              "paramType": "body"
+            }
+          ],
+          "responseMessages": []
+        }
+      ]
+    }
+  ],
+  "models": {
+    "KeysInput": {
+      "id": "KeysInput",
+      "name": "KeysInput",
+      "qualifiedType": "com.wavemaker.gateway.core.auth.KeysInput",
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "length": {
+          "type": "int",
+          "qualifiedType": "int",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        }
+      },
+      "subTypes": []
+    },
+    "KeyDetails": {
+      "id": "KeyDetails",
+      "name": "KeyDetails",
+      "qualifiedType": "com.wavemaker.gateway.core.auth.KeyDetails",
+      "properties": {
+        "signatureAlgorithm": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "secretKey": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "apiKey": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        }
+      },
+      "subTypes": []
+    },
+    "SignaturePayload": {
+      "id": "SignaturePayload",
+      "name": "SignaturePayload",
+      "qualifiedType": "com.wavemaker.gateway.core.auth.SignaturePayload",
+      "properties": {
+        "apiKey": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "data": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        },
+        "signature": {
+          "type": "string",
+          "qualifiedType": "java.lang.String",
+          "position": 0,
+          "required": false,
+          "allowableValues": {}
+        }
+      },
+      "subTypes": []
+    }
+  },
+  "position": 0
+}
