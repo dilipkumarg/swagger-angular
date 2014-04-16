@@ -1,0 +1,8 @@
+<div ng-controller="apiController">
+    <p>Api Version: {{ api.apiVersion }}</p>
+
+    <div ng-repeat="endPoint in api.apis">
+        <end-point-directive end-point="endPoint">
+        </end-point-directive>
+    </div>
+</div>

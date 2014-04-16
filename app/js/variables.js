@@ -6,6 +6,6 @@
  * with the terms of the source code license agreement you entered into with WaveMaker, Inc.
  */
 var variables = {
-    url: "",
-    title: ""
+    url: "apidocs/service.json",
+    title: "Api documentation|Java script"
 };
