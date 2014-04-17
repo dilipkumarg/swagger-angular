@@ -1,6 +1,26 @@
-<div>
-    Info:{{ endPoint.name }}
-    <div ng-repeat="method in endPoint.operations">
-        <method-directive method="method" endPoint="endPoint"></method-directive>
+<li id="resource_{{endPoint.name}}" class="resource" ng-controller="endPointController">
+    <!-- Include end-point-header directive -->
+    <div class="heading">
+        <h2>
+            <a ng-href="#!/{{endPoint.name}}"
+               ng-click="isShow = !isShow">{{endPoint.name}}</a>
+            :{{endPoint.description}}
+        </h2>
+        <ul class="options">
+            <li>
+                <a ng-href="#" ng-click="Docs.toggleOperationsForResource('{{endPoint.name}}');">
+                    Toggle Operations
+                </a>
+            </li>
+            <li>
+                <a ng-href="{{endPoint.url}}">Raw</a>
+            </li>
+        </ul>
     </div>
-</div>
+    <ul class="endpoints" id="{{endPoint.name}}_endpoint_list" ng-show="isShow">
+
+        <div ng-repeat="method in endPoint.operations">
+            <method-directive method="method" end-point="endPoint" index="{{$index}}"></method-directive>
+        </div>
+    </ul>
+</li>

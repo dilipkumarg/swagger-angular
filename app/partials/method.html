@@ -1,4 +1,93 @@
-<div>
-    <p>Method details</p>
-    {{method.path}}
-</div>
+<li class="endpoint" ng-controller="methodController">
+    <ul class="operations">
+        <li class="{{method.method}} operation" id="{{idPrefix}}">
+            <div class="heading">
+                <h3>
+                  <span class="http_method">
+                    <a ng-href="{{methodUrl}}">{{method.method}}</a>
+                  </span>
+                  <span class="path">
+                    <a ng-href="{{methodUrl}}" ng-click="toggleContent()">{{method.path}}</a>
+                      :{{method.description}}
+                  </span>
+                </h3>
+                <ul class="options">
+                    <li>
+                        <a ng-href="{{methodUrl}}"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="content" id="{{idPrefix}}_content" ng-show="isShow">
+                <h4>Response Class</h4>
+                <!-- TODO include model-signature directive -->
+                <div class="model-signature">
+                    <div>
+                        <ul class="signature-nav">
+                            <li><a ng-class="{descriptionLink: true, selected: !isModelSchemaShow}"
+                                   ng-click="isModelSchemaShow=false" href>Model</a></li>
+                            <li><a ng-class="{snippetLink: true, selected: isModelSchemaShow}"
+                                   ng-click="isModelSchemaShow=true" href>Model Schema</a></li>
+                        </ul>
+                        <div>
+
+                            <div class="signature-container">
+                                <div class="description" ng-hide="isModelSchemaShow"
+                                     ng-bind-html="method.responseClassSignature">
+                                </div>
+
+                                <div class="snippet" ng-show="isModelSchemaShow">
+                                    <pre>
+<code class="json" ng-bind-html="modelSchema"></code></pre>
+                                    <small class="notice"></small>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <!-- End of model signature section -->
+
+                
+
+                <div class="response-content-type">
+                    <div><label for="responseContentType">Response Content Type</label>
+                        <select name="responseContentType">
+                            <option value="{{responseType}}" ng-repeat="responseType in method.produces">
+                                {{responseType}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <form accept-charset="UTF-8" class="sandbox">
+                    <div style="margin:0;padding:0;display:inline"></div>
+
+
+                    <div class="sandbox_header">
+                        <input class="submit" name="commit" type="button" value="Try it out!">
+                        <a href="#" class="response_hider" style="display:none">Hide Response</a>
+                        <img alt="Throbber" class="response_throbber" src="app/images/throbber.gif"
+                             style="display:none">
+                    </div>
+
+                </form>
+                <!-- TODO Try out response.. -->
+                <div class="response" style="display:none">
+                    <h4>Request URL</h4>
+
+                    <div class="block request_url"></div>
+                    <h4>Response Body</h4>
+
+                    <div class="block response_body"></div>
+                    <h4>Response Code</h4>
+
+                    <div class="block response_code"></div>
+                    <h4>Response Headers</h4>
+
+                    <div class="block response_headers"></div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</li>

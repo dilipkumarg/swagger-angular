@@ -1,47 +1,29 @@
 /**
  * Created by dilip on 16/4/14.
  */
-var apiDocsApp = angular.module('apiDocsApp', []);
+var apiDocsApp = angular.module('apiDocsApp', ['ngSanitize']);
 
-apiDocsApp.controller("mainController", function ($scope) {
-    var url = variables.url;
-    var options = {
-        url: (url.indexOf("http") !== 0) ? buildURL(window.location.href.toString(), url) : url,
-        supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
-        onComplete: function (swaggerApi, swaggerUi) {
-            log("API loading completed")
-        },
-        success: function () {
-            console.log("Success, about to render", $scope.api);
-        },
-        progress: function (d) {
-            console.log("Progress:", d);
-        },
-        failure: function (d) {
-            console.log("Failed:", d);
-        },
-        onFailure: function (data) {
-            console.log("Unable to Load SwaggerUI");
-        },
-        docExpansion: "none",
-        useJQuery: true
-    };
-
-    $scope.api = new SwaggerApi(options);
-
-    function buildURL(base, url) {
-        console.log("base is " + base);
-
-        if (url.length > 0) {
-            return Util.baseUrl(url.charAt(0) !== "/") + url;
-        }
-        return Util.baseUrl(true);
-    }
-
-});
 
 apiDocsApp.controller("apiController", function ($scope) {
 
+});
+
+apiDocsApp.controller("endPointController", function ($scope) {
+    $scope.isShow = false;
+});
+
+apiDocsApp.controller("methodController", function ($scope) {
+    $scope.isShow = false;
+    $scope.toggleContent = function () {
+        $scope.isShow = !$scope.isShow;
+    };
+
+    $scope.isModelSchemaShow = false;
+    $scope.modelSchema = $scope.method.responseSampleJSON;
+    // hljs.highlightAuto($scope.method.responseSampleJSON).value;
+
+    $scope.idPrefix = $scope.endPoint.name + "_" + $scope.method.nickname + "_" + $scope.method.method + "_" + $scope.index;
+    $scope.methodUrl = "#!/" + $scope.endPoint.name + "/" + $scope.method.nickname + "_" + $scope.method.method + "_" + $scope.index;
 });
 
 apiDocsApp.directive("apiDirective", function () {
@@ -66,7 +48,8 @@ apiDocsApp.directive("methodDirective", function () {
         restrict: 'E',
         scope: {
             "method": "=",
-            "endPoint": "="
+            "endPoint": "=",
+            "index": "@"
         },
         templateUrl: "app/partials/method.html"
     }
