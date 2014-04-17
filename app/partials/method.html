@@ -48,8 +48,6 @@
                 <br>
                 <!-- End of model signature section -->
 
-                
-
                 <div class="response-content-type">
                     <div><label for="responseContentType">Response Content Type</label>
                         <select name="responseContentType">
@@ -62,6 +60,109 @@
 
                 <form accept-charset="UTF-8" class="sandbox">
                     <div style="margin:0;padding:0;display:inline"></div>
+
+                    <!-- Start of parameter section -->
+                    <table class="fullwidth">
+                        <thead>
+                        <tr>
+                            <th style="width: 100px; max-width: 100px">Parameter</th>
+                            <th style="width: 100px; max-width: 100px">Parameter Type</th>
+                            <th style="width: 310px; max-width: 310px">Value</th>
+                            <th style="width: 200px; max-width: 200px">Description</th>
+                            <th style="width: 220px; max-width: 230px">Data Type</th>
+                        </tr>
+                        </thead>
+                        <tbody class="operation-params">
+
+                        <tr>
+                            <td class="code required">document</td>
+                            <td>
+
+
+                                <textarea class="body-textarea" placeholder="(required)" name="document"></textarea>
+                                <br>
+
+                                <div class="parameter-content-type">
+                                    <div><label for="parameterContentType">Parameter content type:</label>
+                                        <select name="parameterContentType">
+
+
+                                            <option value=""></option>
+
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                            </td>
+                            <td>
+                                <strong></strong>
+                            </td>
+                            <td>body</td>
+                            <td><span class="model-signature"><div>
+                                <div>
+                                    <ul class="signature-nav">
+                                        <li><a class="description-link selected" href="#">Model</a></li>
+                                        <li><a class="snippet-link" href="#">Model Schema</a></li>
+                                    </ul>
+                                    <div>
+
+                                        <div class="signature-container">
+                                            <div class="description" style="display: block;">
+                                                <span class="strong">ResponseDocument {</span>
+
+                                                <div><span class="propName propOpt">timestamp</span> (<span
+                                                        class="propType">Date</span>, <span
+                                                        class="propOptKey">optional</span>),
+                                                </div>
+                                                <div><span class="propName propOpt">id</span> (<span class="propType">string</span>,
+                                                    <span class="propOptKey">optional</span>),
+                                                </div>
+                                                <div><span class="propName propOpt">headers</span> (<span
+                                                        class="propType">Map[string,string]</span>, <span
+                                                        class="propOptKey">optional</span>),
+                                                </div>
+                                                <div><span class="propName propOpt">date</span> (<span class="propType">long</span>,
+                                                    <span class="propOptKey">optional</span>),
+                                                </div>
+                                                <div><span class="propName propOpt">type</span> (<span class="propType">DocumentType</span>,
+                                                    <span class="propOptKey">optional</span>),
+                                                </div>
+                                                <div><span class="propName propOpt">url</span> (<span class="propType">string</span>,
+                                                    <span class="propOptKey">optional</span>),
+                                                </div>
+                                                <div><span class="propName propOpt">server</span> (<span
+                                                        class="propType">string</span>, <span class="propOptKey">optional</span>),
+                                                </div>
+                                                <div><span class="propName propOpt">status</span> (<span
+                                                        class="propType">string</span>, <span class="propOptKey">optional</span>)
+                                                </div>
+                                                <span class="strong">}</span>
+                                            </div>
+
+                                            <div class="snippet" style="display: none;">
+        <pre><code class="json">{
+            "<span class="attribute">timestamp</span>": <span class="value"><span class="string">"Date"</span></span>,
+            "<span class="attribute">id</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">headers</span>": <span class="value"><span
+                    class="string">"Map[string,string]"</span></span>,
+            "<span class="attribute">date</span>": <span class="value"><span class="string">"long"</span></span>,
+            "<span class="attribute">type</span>": <span class="value"><span class="string">"DocumentType"</span></span>,
+            "<span class="attribute">url</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">server</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">status</span>": <span class="value"><span class="string">""</span>
+}</span></code></pre>
+                                                <small class="notice">Click to set as parameter value</small>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div></span></td>
+                        </tr>
+                        </tbody>
+                    </table>
 
 
                     <div class="sandbox_header">
