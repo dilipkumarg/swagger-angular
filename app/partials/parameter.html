@@ -1,0 +1,28 @@
+<td ng-class="{code:true, required: parameter.required}">{{parameter.name}}</td>
+<td>{{parameter.paramType}}</td>
+<td ng-switch on="parameter.paramType">
+    <div ng-switch-when="path">
+        <input type="text" ng-class="{parameter: true, required: parameter.required}" name="{{parameter.name}}"
+               ng-required="parameter.required"
+               ng-attr-placeholder="{{parameter.required && '(required)' || '(optional)'}}">
+    </div>
+    <div ng-switch-when="body">
+        <textarea class="body-textarea" placeholder="(required)" name="document"></textarea>
+        <br>
+
+        <div class="parameter-content-type">
+            <div><label for="parameterContentType">Parameter content type:</label>
+                <select name="parameterContentType">
+                    <option value="{{contentType}}" ng-repeat="contentType in parameter.consumes">{{contentType}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+</td>
+<td>
+    <strong>{{parameter.description}}</strong>
+</td>
+<td>
+    <signature-directive signature="parameter.signature" json="parameter.sampleJSON"></signature-directive>
+</td>

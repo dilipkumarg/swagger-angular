@@ -18,12 +18,25 @@ apiDocsApp.controller("methodController", function ($scope) {
         $scope.isShow = !$scope.isShow;
     };
 
-    $scope.isModelSchemaShow = false;
-    $scope.modelSchema = $scope.method.responseSampleJSON;
-    // hljs.highlightAuto($scope.method.responseSampleJSON).value;
-
     $scope.idPrefix = $scope.endPoint.name + "_" + $scope.method.nickname + "_" + $scope.method.method + "_" + $scope.index;
     $scope.methodUrl = "#!/" + $scope.endPoint.name + "/" + $scope.method.nickname + "_" + $scope.method.method + "_" + $scope.index;
+});
+
+apiDocsApp.controller("signatureController", function ($scope) {
+    $scope.isModelSchemaShow = false;
+    $scope.modelSignature = $scope.signature;
+    $scope.modelSchema = $scope.json;
+    if (typeof $scope.modelSchema !== "undefined" && $scope.modelSchema !== null) {
+        $scope.modelSchema = hljs.highlightAuto($scope.modelSchema).value;
+    }
+});
+apiDocsApp.controller("sandBoxFormController", function ($scope) {
+    $scope.isParamsShow = ($scope.method.parameters.length > 0) ? true : false;
+
+});
+
+apiDocsApp.controller("parameterController", function ($scope) {
+    
 });
 
 apiDocsApp.directive("apiDirective", function () {
@@ -52,5 +65,46 @@ apiDocsApp.directive("methodDirective", function () {
             "index": "@"
         },
         templateUrl: "app/partials/method.html"
+    }
+});
+
+apiDocsApp.directive("signatureDirective", function () {
+    return {
+        restrict: 'E',
+        scope: {
+            "signature": "=",
+            "json": "="
+        },
+        templateUrl: "app/partials/signature.html"
+    }
+});
+
+apiDocsApp.directive("responseTypeDirective", function () {
+    return {
+        restrict: 'E',
+        scope: {
+            "produces": "="
+        },
+        templateUrl: "app/partials/responseType.html"
+    }
+});
+
+apiDocsApp.directive("sandBoxForm", function () {
+    return  {
+        restrict: 'E',
+        scope: {
+            "method": "="
+        },
+        templateUrl: "app/partials/sandBoxForm.html"
+    }
+});
+
+apiDocsApp.directive("parameterDirective", function () {
+    return {
+        restrict: 'A',
+        scope: {
+            "parameter": "="
+        },
+        templateUrl: "app/partials/parameter.html"
     }
 });

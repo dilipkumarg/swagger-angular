@@ -1,0 +1,30 @@
+<form accept-charset="UTF-8" class="sandbox" ng-controller="sandBoxFormController">
+    <div style="margin:0;padding:0;display:inline"></div>
+
+    <!-- Start of parameter section -->
+    <table class="fullwidth" ng-if="isParamsShow">
+        <thead>
+        <tr>
+            <th style="width: 100px; max-width: 100px">Parameter</th>
+            <th style="width: 100px; max-width: 100px">Parameter Type</th>
+            <th style="width: 310px; max-width: 310px">Value</th>
+            <th style="width: 200px; max-width: 200px">Description</th>
+            <th style="width: 220px; max-width: 230px">Data Type</th>
+        </tr>
+        </thead>
+        <tbody class="operation-params">
+        <tr parameter-directive parameter="parameter" ng-controller="parameterController"
+            ng-repeat="parameter in method.parameters">
+        </tr>
+        </tbody>
+    </table>
+
+
+    <div class="sandbox_header">
+        <input class="submit" name="commit" type="button" value="Try it out!">
+        <a href="#" class="response_hider" style="display:none">Hide Response</a>
+        <img alt="Throbber" class="response_throbber" src="app/images/throbber.gif"
+             style="display:none">
+    </div>
+
+</form>
