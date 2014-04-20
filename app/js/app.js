@@ -3,108 +3,72 @@
  */
 var apiDocsApp = angular.module('apiDocsApp', ['ngSanitize']);
 
+apiDocsApp.controller('apiController', function ($scope) {
+    $scope.info = $scope.api.info;
+    $scope.basePath = $scope.api.basePath;
+    $scope.apiVersion = $scope.api.apiVersion;
 
-apiDocsApp.controller("apiController", function ($scope) {
+    var apisArray = $scope.api.apisArray,
+        apis = {};
 
+    for (var i = 0; i < apisArray.length; i += 1) {
+        var counter = 0,
+            api = apisArray[i],
+            id = api.name;
+        while (typeof apis[id] !== "undefined") {
+            counter += 1;
+            id = id + "_" + counter;
+        }
+        api.id = id;
+        apis[id] = api;
+    }
+    $scope.resources = apis;
 });
 
-apiDocsApp.controller("endPointController", function ($scope) {
-    $scope.isShow = false;
-});
+apiDocsApp.controller('resourceController', function ($scope) {
+    var resource = $scope.model;
+    $scope.id = resource.id;
+    $scope.name = resource.name;
+    $scope.description = resource.description;
+    $scope.url = resource.url;
 
-apiDocsApp.controller("methodController", function ($scope) {
-    $scope.isShow = false;
-    $scope.toggleContent = function () {
-        $scope.isShow = !$scope.isShow;
+    $scope.isEndPointsShow = false;
+    $scope.toggleEndPoints = function () {
+        $scope.isEndPointsShow = !$scope.isEndPointsShow;
     };
 
-    $scope.idPrefix = $scope.endPoint.name + "_" + $scope.method.nickname + "_" + $scope.method.method + "_" + $scope.index;
-    $scope.methodUrl = "#!/" + $scope.endPoint.name + "/" + $scope.method.nickname + "_" + $scope.method.method + "_" + $scope.index;
-});
+    var operationsArray = resource.operationsArray,
+        methods = {};
 
-apiDocsApp.controller("signatureController", function ($scope) {
-    $scope.isModelSchemaShow = false;
-    $scope.modelSignature = $scope.signature;
-    $scope.modelSchema = $scope.json;
-    if (typeof $scope.modelSchema !== "undefined" && $scope.modelSchema !== null) {
-        $scope.modelSchema = hljs.highlightAuto($scope.modelSchema).value;
+    for (var i = 0; i < operationsArray.length; i += 1) {
+        var counter = 0,
+            method = operationsArray[i],
+            id = method.nickname;
+
+        while (typeof methods[id] !== "undefined") {
+            counter += 1;
+            id = id + "_" + counter;
+        }
+        method.nickname = id;
+        methods[id] = method;
     }
-});
-apiDocsApp.controller("sandBoxFormController", function ($scope) {
-    $scope.isParamsShow = ($scope.method.parameters.length > 0) ? true : false;
 
+    $scope.methods = methods;
 });
 
-apiDocsApp.controller("parameterController", function ($scope) {
-    
-});
-
-apiDocsApp.directive("apiDirective", function () {
+apiDocsApp.directive("api", function () {
     return {
         restrict: 'E',
-        templateUrl: "app/partials/api.html"
+        templateUrl: "app/partials/main.html"
     }
 });
 
-apiDocsApp.directive("endPointDirective", function () {
-    return {
-        restrict: 'E',
-        scope: {
-            "endPoint": "="
-        },
-        templateUrl: "app/partials/endPoint.html"
-    }
-});
-
-apiDocsApp.directive("methodDirective", function () {
+apiDocsApp.directive("resource", function () {
     return {
         restrict: 'E',
         scope: {
-            "method": "=",
-            "endPoint": "=",
-            "index": "@"
+            "model": "="
         },
-        templateUrl: "app/partials/method.html"
-    }
-});
-
-apiDocsApp.directive("signatureDirective", function () {
-    return {
-        restrict: 'E',
-        scope: {
-            "signature": "=",
-            "json": "="
-        },
-        templateUrl: "app/partials/signature.html"
-    }
-});
-
-apiDocsApp.directive("responseTypeDirective", function () {
-    return {
-        restrict: 'E',
-        scope: {
-            "produces": "="
-        },
-        templateUrl: "app/partials/responseType.html"
-    }
-});
-
-apiDocsApp.directive("sandBoxForm", function () {
-    return  {
-        restrict: 'E',
-        scope: {
-            "method": "="
-        },
-        templateUrl: "app/partials/sandBoxForm.html"
-    }
-});
-
-apiDocsApp.directive("parameterDirective", function () {
-    return {
-        restrict: 'A',
-        scope: {
-            "parameter": "="
-        },
-        templateUrl: "app/partials/parameter.html"
+        templateUrl: "app/partials/resource.html"
     }
 });

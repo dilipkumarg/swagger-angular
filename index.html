@@ -24,6 +24,10 @@
     <script src="app/js/directives/slidable_directive.js" type="text/javascript"></script>
 </head>
 <body ng-controller="mainController">
-<api-directive></api-directive>
+<div ng-if="isShow">
+    <div ng-controller="apiController">
+        <api></api>
+    </div>
+</div>
 </body>
 </html>

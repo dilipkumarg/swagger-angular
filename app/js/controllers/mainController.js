@@ -3,6 +3,7 @@
  */
 
 apiDocsApp.controller("mainController", function ($scope) {
+    $scope.isShow = false;
     function buildURL(base, url) {
         console.log("base is " + base);
 
@@ -17,6 +18,7 @@ apiDocsApp.controller("mainController", function ($scope) {
             url: (url.indexOf("http") !== 0) ? buildURL(window.location.href.toString(), url) : url,
             supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
             success: function () {
+                $scope.isShow = true;
                 console.log("Success, about to render", $scope.api);
             },
             progress: function (d) {

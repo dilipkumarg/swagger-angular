@@ -1,0 +1,27 @@
+<div id="swagger-ui-container" class="swagger-ui-wrap" ng-controller="apiController">
+    <div class='info' id='api_info'>
+        <div ng-if="info">
+            <div class="info_title">{{info.title}}</div>
+            <div class="info_description">{{info.description}}</div>
+            <div class="info_tos" ng-if="info.termsOfServiceUrl"><a href="{{info.termsOfServiceUrl}}">Terms of
+                service</a>
+            </div>
+            <div class='info_contact' ng-if="info.contact"><a ng-href="mailto:{{info.contact}}">Contact the
+                developer</a>
+            </div>
+            <div class='info_license' ng-if="info.license"><a ng-href='{{info.licenseUrl}}'>{{info.license}}</a></div>
+        </div>
+    </div>
+    <div class='container' id='resources_container'>
+        <ul id='resources'>
+            <resource model="resource" ng-repeat="resource in resources"></resource>
+        </ul>
+        <div class="footer">
+            <br>
+            <br>
+            <h4 style="color: #999">[ <span style="font-variant: small-caps">base url</span>: {{basePath}}
+                <span style="font-variant: small-caps" ng-if="apiVersion">, api version</span>: {{apiVersion}}
+            </h4>
+        </div>
+    </div>
+</div>

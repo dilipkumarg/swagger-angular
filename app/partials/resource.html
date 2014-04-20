@@ -1,0 +1,32 @@
+<li class="resource" ng-controller="resourceController">
+    <div class='heading'>
+        <h2>
+            <a ng-href='#!/{{id}}' ng-click="toggleEndPoints();">{{name}}</a>
+            <span ng-if="description">
+                : {{description}}
+            </span>
+        </h2>
+        <ul class='options'>
+            <li>
+                <a href='#!/{{id}}' id='endpointListTogger_{{id}}'
+                   ng-click="toggleEndPoints();">Show/Hide</a>
+            </li>
+            <li>
+                <a href='#' ng-click="Docs.collapseOperationsForResource('{{id}}');">
+                    List Operations
+                </a>
+            </li>
+            <li>
+                <a href='#' ng-click="Docs.expandOperationsForResource('{{id}}'); ">
+                    Expand Operations
+                </a>
+            </li>
+            <li>
+                <a href='{{url}}'>Raw</a>
+            </li>
+        </ul>
+    </div>
+    <ul class='endpoints' id='{{id}}_endpoint_list' ng-show="isEndPointsShow">
+
+    </ul>
+</li>
