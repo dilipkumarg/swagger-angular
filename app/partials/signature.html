@@ -1,0 +1,24 @@
+<div class="model-signature" ng-controller="signatureController">
+    <div ng-if="isSignatureModelShow">
+        <ul class="signature-nav">
+            <li><a href ng-class="{descriptionLink: true, selected: !isSchemaShow}"
+                   ng-click="isSchemaShow = false;">Model</a></li>
+            <li><a href ng-class="{snippetLink:true,selected: isSchemaShow} " ng-click="isSchemaShow = true">Model
+                Schema</a>
+            </li>
+        </ul>
+        <div>
+            <div class="signature-container">
+                <div class="description" ng-hide="isSchemaShow"
+                     ng-bind-html="signature"></div>
+                <div class="snippet" ng-show="isSchemaShow">
+                    <pre><code>{{sampleJSON}}</code></pre>
+                    <small class="notice"></small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="!isSignatureModelShow">
+        {{signature}}
+    </div>
+</div>

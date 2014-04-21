@@ -1,0 +1,68 @@
+<h4>Parameters</h4>
+<table class='fullwidth'>
+    <thead>
+    <tr>
+        <th style="width: 100px; max-width: 100px">Parameter</th>
+        <th style="width: 100px; max-width: 100px">Parameter Type</th>
+        <th style="width: 310px; max-width: 310px">Value</th>
+        <th style="width: 200px; max-width: 200px">Description</th>
+        <th style="width: 220px; max-width: 230px">Data Type</th>
+    </tr>
+    </thead>
+    <tbody class="operation-params">
+    <tr param="parameter" ng-controller="parameterController"
+        ng-repeat="parameter in parameters">
+        <td ng-class='{code:true, required: required}'>{{name}}</td>
+        <td ng-bind-html="paramType"></td>
+        <td>
+            <!-- if it is a List  -->
+            <div ng-if="isList">
+                <!-- TODO need to write for all cases-->
+                <select ng-attr-multiple='{ isArray }' class='parameter' name='{{name}}'>
+                    <option value='{{value}}' ng-repeat="value in allowableValues.descriptiveValues">{{value}}</option>
+                </select>
+            </div>
+            <!-- else (it is not a List)  -->
+            <div ng-if="!isList">
+                <!-- if it is readOnly -->
+                <div ng-if="readOnly">
+                    <textarea ng-if="isBody" class='body-textarea' readonly='readonly'
+                              ng-attr-placeholder="{{required && '(required)' || '(optional)'}}"
+                              name='{{name}}'>{{defaultValue}}</textarea>
+                        <span ng-if="defaultValue">
+                            {{defaultValue}}
+                        </span>
+                        <span ng-if="!defaultValue">
+                            (empty)
+                        </span>
+                </div>
+                <!-- else (it is not a readOnly -->
+                <div ng-if="!readOnly">
+                    <div ng-if="isBody">
+                        <input type="file" name='{{name}}' ng-if="isFile"/>
+                        <textarea class='body-textarea' ng-required="required"
+                                  ng-attr-placeholder="{{required && '(required)' || '(optional)'}}"
+                                  name='{{name}}' ng-if="!isFile">{{defaultValue}}</textarea>
+                        <br/>
+
+                        <div class="parameter-content-type" ng-if="!defaultValue">
+                        </div>
+                    </div>
+                    <div ng-if="!isBody">
+                        <input class='parameter required' name='{{name}}' ng-required="required"
+                               ng-attr-placeholder="{{required && '(required)' || '(optional)'}}"
+                               ng-attr-type='{{isFile && ' file' || 'text'}}' value='{{defaultValue}}'/>
+                    </div>
+                </div>
+            </div>
+
+        </td>
+        <td ng-bind-html="description"></td>
+        <td>
+            <span class="model-signature">
+                <signature model="signatureParams"></signature>
+            </span>
+        </td>
+    </tr>
+    </tbody>
+</table>

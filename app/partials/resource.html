@@ -8,17 +8,8 @@
         </h2>
         <ul class='options'>
             <li>
-                <a href='#!/{{id}}' id='endpointListTogger_{{id}}'
-                   ng-click="toggleEndPoints();">Show/Hide</a>
-            </li>
-            <li>
                 <a href='#' ng-click="Docs.collapseOperationsForResource('{{id}}');">
-                    List Operations
-                </a>
-            </li>
-            <li>
-                <a href='#' ng-click="Docs.expandOperationsForResource('{{id}}'); ">
-                    Expand Operations
+                    Toggle Operations
                 </a>
             </li>
             <li>
@@ -27,6 +18,6 @@
         </ul>
     </div>
     <ul class='endpoints' id='{{id}}_endpoint_list' ng-show="isEndPointsShow">
-
+        <method model="method" ng-repeat="method in methods"></method>
     </ul>
 </li>
