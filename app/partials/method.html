@@ -44,14 +44,14 @@
                     <br/>
 
                     <div class="response-content-type">
-                        <response-type model="contentTypeParams"></response-type>
+                        <content-type model="contentTypeParams"></content-type>
                     </div>
                </span>
 
                 <form accept-charset='UTF-8' class='sandbox'>
                     <div style='margin:0;padding:0;display:inline'></div>
                     <div ng-if="parameters">
-                        <parameters-directive parameters="parameters" readOnly="isReadOnly"></parameters-directive>
+                        <parameters-directive parameters="parameters" consumes="contentTypeParams.consumes" read-only="isReadOnly"></parameters-directive>
                     </div>
                     <div ng-if="responseMessages">
                         <div style='margin:0;padding:0;display:inline'></div>
@@ -64,6 +64,10 @@
                             </tr>
                             </thead>
                             <tbody class="operation-status">
+                            <tr ng-repeat="responseMessage in responseMessages">
+                                <td width='15%' class='code'>{{responseMessage.code}}</td>
+                                <td ng-bind-html="responseMessage.message"></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

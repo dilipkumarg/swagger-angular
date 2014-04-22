@@ -4,7 +4,7 @@
 apiDocsApp.controller("methodController", function ($scope) {
     var method = $scope.model;
     $scope.method = method.method;
-    $scope.parentId = method.parentId;
+    $scope.parentId = method.parentId || method.resourceName;
     $scope.nickname = method.nickname;
     $scope.path = method.path;
     $scope.summary = method.summary;
@@ -39,8 +39,8 @@ apiDocsApp.controller("methodController", function ($scope) {
     function isFileTypeExists(parameters) {
         if (typeof parameters !== "undefined") {
             for (var i = 0; i < parameters.length; i += 1) {
-                var param = parameters[i];
-                var type = param.type || param.dataType;
+                var param = parameters[i],
+                    type = param.type || param.dataType;
                 if (type.toLowerCase() === "file") {
                     return true;
                 }

@@ -1,23 +1,27 @@
 {
-  "apiVersion": "v1",
-  "swaggerVersion": "1.2",
-  "basePath": "apidocs",
-  "apis": [
-    {
-      "path": "/apidocs.{format}",
-      "position": 0
-    },
-    {
-      "path": "/index.{format}",
-      "position": 1
-    },
-    {
-      "path": "/registry.{format}",
-      "position": 2
-    },
-    {
-      "path": "/keys.{format}",
-      "position": 3
-    }
-  ]
+    "apiVersion": "v1",
+    "swaggerVersion": "1.2",
+    "basePath": "apidocs",
+    "apis": [
+        {
+            "path": "/apidocs.{format}",
+            "position": 0
+        },
+        {
+            "path": "/index.{format}",
+            "position": 1
+        },
+        {
+            "path": "/registry.{format}",
+            "position": 2
+        },
+        {
+            "path": "/keys.{format}",
+            "position": 3
+        },
+        {
+            "path": "/pet.{format}",
+            "position": 4
+        }
+    ]
 }

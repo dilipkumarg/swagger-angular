@@ -18,46 +18,60 @@
             <!-- if it is a List  -->
             <div ng-if="isList">
                 <!-- TODO need to write for all cases-->
-                <select ng-attr-multiple='{ isArray }' class='parameter' name='{{name}}'>
-                    <option value='{{value}}' ng-repeat="value in allowableValues.descriptiveValues">{{value}}</option>
+                <select class='parameter' name='{{name}}' multiple ng-if="isArray">
+                    <option ng-selected="item.isDefault" value="item.value"
+                            ng-repeat="item in allowableValues.descriptiveValues">{{item.value}}{{item.isDefault ?
+                        " (Default)"
+                        : ""}}
+                    </option>
+                </select>
+                <select class='parameter' name='{{name}}' ng-if="!isArray">
+                    <option ng-selected="item.isDefault" value="item.value"
+                            ng-repeat="item in allowableValues.descriptiveValues">{{item.value}}{{item.isDefault ?
+                        " (Default)"
+                        : ""}}
+                    </option>
                 </select>
             </div>
             <!-- else (it is not a List)  -->
             <div ng-if="!isList">
                 <!-- if it is readOnly -->
                 <div ng-if="readOnly">
-                    <textarea ng-if="isBody" class='body-textarea' readonly='readonly'
-                              ng-attr-placeholder="{{required && '(required)' || '(optional)'}}"
-                              name='{{name}}'>{{defaultValue}}</textarea>
-                        <span ng-if="defaultValue">
-                            {{defaultValue}}
-                        </span>
-                        <span ng-if="!defaultValue">
-                            (empty)
-                        </span>
+                    <text-area ng-if="isBody"></text-area>
+                    <span ng-if="!isBody">
+                        {{defaultValue || "(empty)" }}
+                    </span>
                 </div>
-                <!-- else (it is not a readOnly -->
+                <!-- else (it is not a readOnly) -->
                 <div ng-if="!readOnly">
                     <div ng-if="isBody">
                         <input type="file" name='{{name}}' ng-if="isFile"/>
-                        <textarea class='body-textarea' ng-required="required"
-                                  ng-attr-placeholder="{{required && '(required)' || '(optional)'}}"
-                                  name='{{name}}' ng-if="!isFile">{{defaultValue}}</textarea>
+                        <text-area ng-if="!isFile"></text-area>
                         <br/>
 
                         <div class="parameter-content-type" ng-if="!defaultValue">
+                            <content-type model="contentTypeParams"></content-type>
                         </div>
                     </div>
                     <div ng-if="!isBody">
-                        <input class='parameter required' name='{{name}}' ng-required="required"
+                        <!-- is a file-->
+                        <input ng-if="isFile" class='parameter' name='{{name}}' ng-required="{{required}}"
+                               type="file"/>
+
+                        <!-- Not a File -->
+                        <input ng-if="!isFile" ng-class='{parameter:true, required:required}' name='{{name}}'
+                               ng-required="{{required}}"
                                ng-attr-placeholder="{{required && '(required)' || '(optional)'}}"
-                               ng-attr-type='{{isFile && ' file' || 'text'}}' value='{{defaultValue}}'/>
+                               type="text" value='{{defaultValue}}'/>
                     </div>
                 </div>
             </div>
 
         </td>
-        <td ng-bind-html="description"></td>
+        <td>
+            <span ng-class="{bold: required}" ng-bind-html="description">
+            </span>
+        </td>
         <td>
             <span class="model-signature">
                 <signature model="signatureParams"></signature>

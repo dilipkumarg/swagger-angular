@@ -3,10 +3,14 @@
  */
 var apiDocsApp = angular.module('apiDocsApp', ['ngSanitize']);
 
-apiDocsApp.controller("responseContentTypeController", function ($scope) {
-    $scope.produces = $scope.model.produces;
-    if (!$scope.produces || $scope.produces.length < 1) {
-        $scope.produces = ["application/json"]
+apiDocsApp.controller("contentTypeController", function ($scope) {
+    var model = $scope.model;
+    $scope.contentTypes = (model.isParam) ? model.consumes : model.produces;
+    $scope.paramType = (model.isParam) ? "parameter" : "response";
+    $scope.paramTypeShow = (model.isParam) ? "Parameter" : "Response";
+    $scope.model = model;
+    if (!$scope.contentTypes || $scope.contentTypes.length < 1) {
+        $scope.contentTypes = ["application/json"]
     }
 });
 
@@ -47,13 +51,13 @@ apiDocsApp.directive("signature", function () {
     }
 });
 
-apiDocsApp.directive("responseType", function () {
+apiDocsApp.directive("contentType", function () {
     return {
         restrict: 'E',
         scope: {
             model: "="
         },
-        templateUrl: "app/partials/responseContentType.html"
+        templateUrl: "app/partials/contentType.html"
     }
 });
 
@@ -62,8 +66,19 @@ apiDocsApp.directive("parametersDirective", function () {
         restrict: 'E',
         scope: {
             parameters: "=",
-            readOnly: "="
+            readOnly: "=",
+            consumes: "="
         },
         templateUrl: "app/partials/parameters.html"
+    }
+});
+
+apiDocsApp.directive("textArea", function () {
+    return {
+        restrict: 'E',
+        template: "<textarea  class='body-textarea' ng-required='{{required}}'" +
+            "ng-readonly='{{readOnly}}'" +
+            " ng-attr-placeholder='{{required && \"(required)\" || \"(optional)\"}}'" +
+            " name='{{name}}'>{{defaultValue}}</textarea>"
     }
 });

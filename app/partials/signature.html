@@ -12,7 +12,8 @@
                 <div class="description" ng-hide="isSchemaShow"
                      ng-bind-html="signature"></div>
                 <div class="snippet" ng-show="isSchemaShow">
-                    <pre><code>{{sampleJSON}}</code></pre>
+                    <pre><code class="{{language}}" ng-bind-html="sampleJSON">
+                    </code></pre>
                     <small class="notice"></small>
                 </div>
             </div>

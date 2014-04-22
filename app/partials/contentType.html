@@ -1,0 +1,6 @@
+<div ng-controller="contentTypeController">
+    <label ng-attr-for="{{paramType}}ContentType">{{paramTypeShow}} Content Type :</label>
+    <select name="{{paramType}}ContentType">
+        <option value="{{contentType}}" ng-repeat="contentType in contentTypes">{{contentType}}</option>
+    </select>
+</div>

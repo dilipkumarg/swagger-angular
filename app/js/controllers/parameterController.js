@@ -10,12 +10,14 @@ apiDocsApp.controller("parameterController", function ($scope) {
     $scope.paramType = parameter.paramType;
     $scope.allowableValues = parameter.allowableValues;
     $scope.required = parameter.required;
+    $scope.readOnly = $scope.$parent.readOnly;
+    // TODO Remove line
+    $scope.parameter = parameter;
 
     $scope.signatureParams = {
         sampleJSON: parameter.sampleJSON,
         isParam: true,
         signature: parameter.signature
-
     };
 
     var type = parameter.type || parameter.dataType;
@@ -24,5 +26,8 @@ apiDocsApp.controller("parameterController", function ($scope) {
     $scope.isArray = (type.toLowerCase === "array") || parameter.allowMultiple;
     $scope.isList = parameter.isList;
 
-
+    $scope.contentTypeParams = {
+        isParam: $scope.isBody,
+        consumes: $scope.$parent.consumes
+    }
 });
